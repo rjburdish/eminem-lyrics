@@ -1,4 +1,4 @@
-import urllib2
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
@@ -9,7 +9,7 @@ filename = 'eminem-songs.csv'
 songs = pd.read_csv(filename)
 
 for index, row in songs.iterrows():
-    page = urllib2.urlopen(quote_page.format(row['song']))
+    page = urlopen(quote_page.format(row['song']))
     soup = BeautifulSoup(page, 'html.parser')
     verses = soup.find_all('p', attrs={'class': 'verse'})
 
